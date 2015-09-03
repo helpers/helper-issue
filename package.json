@@ -1,6 +1,6 @@
 {
   "name": "helper-issue",
-  "description": "Create a url to prepopulate a github issue.",
+  "description": "Helper to create a URL that pre-populates a Github issue.",
   "version": "0.1.0",
   "homepage": "https://github.com/helpers/helper-issue",
   "author": "Brian Woodward (https://github.com/doowb)",

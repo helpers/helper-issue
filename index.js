@@ -13,7 +13,7 @@ lazy('handlebars');
 lazy('url');
 
 /**
- * Helper to create a URL that will prepopulate a github issue.
+ * Helper to create a URL that pre-populates a Github issue.
  *
  * ```js
  * var url = issue({

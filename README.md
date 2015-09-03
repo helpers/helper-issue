@@ -1,6 +1,6 @@
 # helper-issue [![NPM version](https://badge.fury.io/js/helper-issue.svg)](http://badge.fury.io/js/helper-issue)  [![Build Status](https://travis-ci.org/helpers/helper-issue.svg)](https://travis-ci.org/helpers/helper-issue)
 
-> Create a url to prepopulate a github issue.
+> Helper to create a URL that pre-populates a Github issue.
 
 Install with [npm](https://www.npmjs.com/)
 
@@ -18,7 +18,7 @@ var issue = require('helper-issue');
 
 ### [issue](index.js#L37)
 
-Helper to create a URL that will prepopulate a github issue.
+Helper to create a URL that pre-populates a Github issue.
 
 **Params**
 
