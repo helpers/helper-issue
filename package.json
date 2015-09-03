@@ -20,6 +20,7 @@
     "test": "mocha"
   },
   "devDependencies": {
+    "engine": "^0.1.6",
     "mocha": "*",
     "should": "^7.1.0"
   },
@@ -29,6 +30,8 @@
     }
   },
   "dependencies": {
-    "clone-deep": "^0.2.2"
+    "clone-deep": "^0.2.2",
+    "handlebars": "^4.0.1",
+    "lazy-cache": "^0.2.3"
   }
 }

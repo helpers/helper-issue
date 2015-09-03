@@ -7,13 +7,22 @@
 
 'use strict';
 
-var clone = require('clone-deep');
-var url = require('url');
+var lazy = require('lazy-cache')(require);
+lazy('clone-deep', 'clone');
+lazy('handlebars');
+lazy('url');
 
 /**
  * Helper to create a URL that will prepopulate a github issue.
  *
  * ```js
+ * var url = issue({
+ *   owner: 'helper',
+ *   repo: 'helper-issue',
+ *   title: 'Issue Title',
+ *   body: 'Issue body that may contain markdown'
+ * });
+ * //=> https://github.com/helper/helper-issue/issues/new?title=Issue%20Title&body=Issue%20body%20that%20may%20contain%20markdown
  * ```
  *
  * @param  {Object} `options` Options containing values to use or a hash (when used with Handlebars) with values to use.
@@ -23,12 +32,11 @@ var url = require('url');
  * @param  {String} `options.body` Markdown string to populate the github issue body field.
  * @return {String} URL that can be used in an anchor tag.
  * @api public
- * @name  issue
  */
 
-module.exports = function issue(options) {
-  var options = options || {};
-  var ctx = clone((typeof options.hash === 'object') ? options.hash : options);
+function issue(options) {
+  options = options || {};
+  var ctx = lazy.clone((typeof options.hash === 'object') ? options.hash : options);
   var repo = (typeof ctx.owner !== 'undefined') ? [ctx.owner, ctx.repo].join('/') : ctx.repo;
   delete ctx.owner;
   delete ctx.repo;
@@ -36,11 +44,36 @@ module.exports = function issue(options) {
   if (typeof ctx.owner !== 'undefined') {
     ctx.repo = [ctx.owner, ctx.repo].join('/');
   }
-  var res = url.format({
+  var url = lazy.url.format({
     protocol: 'https',
     host: 'github.com',
     pathname: repo + '/issues/new',
     query: ctx
   });
-  return res;
+  return url;
+}
+
+/**
+ * Wrap `issue` to allow using in handlebars (applies Handlebars.SafeString() to the url)
+ *
+ * ```js
+ * var Handlebars = require('handlebars');
+ * Handlebars.registerHelper('issue', issue.toHandlebars());
+ * ```
+ *
+ * @return {Function} Function usable as a helper in Handlebars
+ * @api public
+ */
+
+issue.toHandlebars = function toHandlebars() {
+  return function () {
+    var url = issue.apply(this, arguments);
+    return new lazy.handlebars.SafeString(url);
+  };
 };
+
+/**
+ * Expose issue
+ */
+
+module.exports = issue;
