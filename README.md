@@ -1,49 +1,46 @@
-# helper-issue [![NPM version](https://badge.fury.io/js/helper-issue.svg)](http://badge.fury.io/js/helper-issue)  [![Build Status](https://travis-ci.org/doowb/helper-issue.svg)](https://travis-ci.org/doowb/helper-issue) 
+# helper-issue [![NPM version](https://badge.fury.io/js/helper-issue.svg)](http://badge.fury.io/js/helper-issue)  [![Build Status](https://travis-ci.org/helpers/helper-issue.svg)](https://travis-ci.org/helpers/helper-issue)
 
 > Create a url to prepopulate a github issue.
 
-## Install with [npm](npmjs.org)
+Install with [npm](https://www.npmjs.com/)
 
-```bash
-npm i helper-issue --save
+```sh
+$ npm i helper-issue --save
 ```
 
 ## Usage
 
 ```js
-var helperIssue = require('helper-issue');
+var issue = require('helper-issue');
 ```
 
 ## API
-<!-- add a path or glob pattern for files with code comments to use for docs  -->
-{%= apidocs("index.js") %}
 
 ## Related projects
-<!-- add an array of related projects, then un-escape the helper -->
-{%= related([]) %}  
 
 ## Running tests
-Install dev dependencies.
 
-```bash
-npm i -d && npm test
+Install dev dependencies:
+
+```sh
+$ npm i -d && npm test
 ```
 
-
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/doowb/helper-issue/issues)
 
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/helpers/helper-issue/issues/new).
 
 ## Author
 
 **Brian Woodward**
- 
+
 + [github/doowb](https://github.com/doowb)
-+ [twitter/doowb](http://twitter.com/doowb) 
++ [twitter/doowb](http://twitter.com/doowb)
 
 ## License
+
 Copyright © 2015 Brian Woodward
-Released under the MIT license
+Released under the MIT license.
 
 ***
 
