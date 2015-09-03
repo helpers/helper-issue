@@ -1,0 +1,1 @@
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue]({%= issue({repo: 'helpers/helper-issue', title: 'New Issue', body: 'New issue created from README.md'}) %}).

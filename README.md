@@ -66,7 +66,7 @@ $ npm i -d && npm test
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/helpers/helper-issue/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/helpers/helper-issue/issues/new?title=New%20Issue&body=New%20issue%20created%20from%20README.md).
 
 ## Author
 
