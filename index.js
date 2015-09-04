@@ -7,10 +7,7 @@
 
 'use strict';
 
-var lazy = require('lazy-cache')(require);
-lazy('clone-deep', 'clone');
-lazy('handlebars');
-lazy('url');
+var url = require('url');
 
 /**
  * Helper to create a URL that pre-populates a Github issue.
@@ -36,7 +33,7 @@ lazy('url');
 
 function issue(options) {
   options = options || {};
-  var ctx = lazy.clone((typeof options.hash === 'object') ? options.hash : options);
+  var ctx = (typeof options.hash === 'object') ? options.hash : options;
   var repo = (typeof ctx.owner !== 'undefined') ? [ctx.owner, ctx.repo].join('/') : ctx.repo;
   delete ctx.owner;
   delete ctx.repo;
@@ -44,33 +41,14 @@ function issue(options) {
   if (typeof ctx.owner !== 'undefined') {
     ctx.repo = [ctx.owner, ctx.repo].join('/');
   }
-  var url = lazy.url.format({
+  var res = url.format({
     protocol: 'https',
     host: 'github.com',
     pathname: repo + '/issues/new',
     query: ctx
   });
-  return url;
+  return res;
 }
-
-/**
- * Wrap `issue` to allow using in handlebars (applies Handlebars.SafeString() to the url)
- *
- * ```js
- * var Handlebars = require('handlebars');
- * Handlebars.registerHelper('issue', issue.toHandlebars());
- * ```
- *
- * @return {Function} Function usable as a helper in Handlebars
- * @api public
- */
-
-issue.toHandlebars = function toHandlebars() {
-  return function () {
-    var url = issue.apply(this, arguments);
-    return new lazy.handlebars.SafeString(url);
-  };
-};
 
 /**
  * Expose issue
