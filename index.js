@@ -8,6 +8,7 @@
 'use strict';
 
 var url = require('url');
+var parse = require('parse-github-url');
 
 /**
  * Helper to create a URL that pre-populates a Github issue.
@@ -22,30 +23,31 @@ var url = require('url');
  * //=> https://github.com/helper/helper-issue/issues/new?title=Issue%20Title&body=Issue%20body%20that%20may%20contain%20markdown
  * ```
  *
- * @param  {Object} `options` Options containing values to use or a hash (when used with Handlebars) with values to use.
- * @param  {String} `options.owner` Repository owner (either github user or org).
- * @param  {String} `options.repo` Repository name (if owner is omitted, provide full repository name).
- * @param  {String} `options.title` Short string to populate the github issue title field.
- * @param  {String} `options.body` Markdown string to populate the github issue body field.
+ * @param  {String|Object} `repository` Repository string or object.
+ * @param  {Object} `data` Data object to add as query parameters to the generated URL.
+ * @param  {String} `data.title` Short string to populate the github issue title field.
+ * @param  {String} `data.body` Markdown string to populate the github issue body field.
  * @return {String} URL that can be used in an anchor tag.
  * @api public
  */
 
-function issue(options) {
-  options = options || {};
-  var ctx = (typeof options.hash === 'object') ? options.hash : options;
-  var repo = (typeof ctx.owner !== 'undefined') ? [ctx.owner, ctx.repo].join('/') : ctx.repo;
-  delete ctx.owner;
-  delete ctx.repo;
-
-  if (typeof ctx.owner !== 'undefined') {
-    ctx.repo = [ctx.owner, ctx.repo].join('/');
+function issue(repository, data) {
+  if (typeof repository === 'undefined') {
+    throw new TypeError('expected a `repository` string or object.');
   }
+
+  data = data || {};
+  if (typeof repository === 'string') {
+    repository = parse(repository);
+  } else if (typeof repository.url === 'string') {
+    repository = parse(repository.url);
+  }
+
   var res = url.format({
     protocol: 'https',
     host: 'github.com',
-    pathname: repo + '/issues/new',
-    query: ctx
+    pathname: repository.repopath + '/issues/new',
+    query: data
   });
   return res;
 }
