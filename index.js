@@ -14,9 +14,7 @@ var parse = require('parse-github-url');
  * Helper to create a URL that pre-populates a Github issue.
  *
  * ```js
- * var url = issue({
- *   owner: 'helper',
- *   repo: 'helper-issue',
+ * var url = issue('helpers/helper-issue', {
  *   title: 'Issue Title',
  *   body: 'Issue body that may contain markdown'
  * });
