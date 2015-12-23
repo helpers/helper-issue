@@ -28,5 +28,8 @@
     "related": {
       "list": []
     }
+  },
+  "dependencies": {
+    "parse-github-url": "^0.2.1"
   }
 }
