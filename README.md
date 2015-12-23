@@ -43,7 +43,7 @@ var url = issue('helpers/helper-issue', {
 
 
 ## Related projects
-
+[parse-github-url](https://www.npmjs.com/package/parse-github-url): Parse a github URL into an object. | [homepage](https://github.com/jonschlinkert/parse-github-url)
 
 ## Running tests
 Install dev dependencies:
